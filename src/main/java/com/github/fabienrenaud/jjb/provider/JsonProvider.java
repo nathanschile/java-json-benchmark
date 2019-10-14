@@ -24,6 +24,8 @@ public interface JsonProvider<T> {
 
     ObjectMapper jacksonAfterburner();
 
+    ObjectMapper jacksonOrgJson();
+
     JsonFactory jacksonFactory();
 
     Genson genson();

@@ -7,6 +7,7 @@ import com.dslplatform.json.runtime.Settings;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsonorg.JsonOrgModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.module.afterburner.AfterburnerModule;
 import com.github.fabienrenaud.jjb.model.Clients;
@@ -59,6 +60,12 @@ public class ClientsJsonProvider implements JsonProvider<Clients> {
             .registerModule(new AfterburnerModule())
             .registerModule(new JavaTimeModule())
             .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+    private final ObjectMapper jacksonOrgJson = new ObjectMapper()
+        .registerModule(new JsonOrgModule())
+        .registerModule(new JavaTimeModule())
+        .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+
+
     private final JsonFactory jacksonFactory = new JsonFactory();
     private final Genson genson = new GensonBuilder()
             .useDateAsTimestamp(false)
@@ -179,6 +186,11 @@ public class ClientsJsonProvider implements JsonProvider<Clients> {
     @Override
     public ObjectMapper jacksonAfterburner() {
         return jacksonAfterburner;
+    }
+
+    @Override
+    public ObjectMapper jacksonOrgJson() {
+        return jacksonOrgJson;
     }
 
     @Override

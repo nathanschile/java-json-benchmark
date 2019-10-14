@@ -5,6 +5,7 @@ import com.bluelinelabs.logansquare.LoganSquare;
 import com.github.fabienrenaud.jjb.JsonBench;
 import com.github.fabienrenaud.jjb.data.JsonSource;
 import com.google.gson.JsonSyntaxException;
+import org.json.JSONObject;
 import org.openjdk.jmh.annotations.Benchmark;
 
 import java.io.IOException;
@@ -29,6 +30,12 @@ public class Deserialization extends JsonBench {
     @Override
     public Object jackson() throws Exception {
         return JSON_SOURCE().provider().jackson().readValue(JSON_SOURCE().nextByteArray(), JSON_SOURCE().pojoType());
+    }
+
+    @Benchmark
+    @Override
+    public Object jackson_orgjson() throws Exception {
+        return JSON_SOURCE().provider().jacksonOrgJson().readValue(JSON_SOURCE().nextByteArray(), JSONObject.class);
     }
 
     @Benchmark

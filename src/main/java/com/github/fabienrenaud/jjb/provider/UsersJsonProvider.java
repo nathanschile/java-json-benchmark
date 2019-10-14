@@ -7,6 +7,7 @@ import com.dslplatform.json.DslJson;
 import com.dslplatform.json.runtime.Settings;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsonorg.JsonOrgModule;
 import com.fasterxml.jackson.module.afterburner.AfterburnerModule;
 import com.github.fabienrenaud.jjb.model.Users;
 import com.google.gson.Gson;
@@ -33,6 +34,7 @@ public class UsersJsonProvider implements JsonProvider<Users> {
     private final Gson gson = new Gson();
     private final ObjectMapper jackson = new ObjectMapper();
     private final ObjectMapper jacksonAfterburner = new ObjectMapper();
+    private final ObjectMapper jacksonOrgJson = new ObjectMapper();
     private final JsonFactory jacksonFactory = new JsonFactory();
     private final Genson genson = new Genson();
     private final Jsonb yasson = new JsonBindingProvider().create()
@@ -53,6 +55,7 @@ public class UsersJsonProvider implements JsonProvider<Users> {
 
     public UsersJsonProvider() {
         jacksonAfterburner.registerModule(new AfterburnerModule());
+        jacksonOrgJson.registerModule(new JsonOrgModule());
 
         jsonioStreamOptions.put(JsonReader.USE_MAPS, true);
         jsonioStreamOptions.put(JsonWriter.TYPE, false);
@@ -79,6 +82,11 @@ public class UsersJsonProvider implements JsonProvider<Users> {
     @Override
     public ObjectMapper jacksonAfterburner() {
         return jacksonAfterburner;
+    }
+
+    @Override
+    public ObjectMapper jacksonOrgJson() {
+        return jacksonOrgJson;
     }
 
     @Override
