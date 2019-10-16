@@ -20,6 +20,8 @@ public interface JsonProvider<T> {
 
     Gson gson();
 
+    Gson gsonJsonObject();
+
     ObjectMapper jackson();
 
     ObjectMapper jacksonAfterburner();

@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.bluelinelabs.logansquare.LoganSquare;
 import com.github.fabienrenaud.jjb.JsonBench;
 import com.github.fabienrenaud.jjb.data.JsonSource;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import org.json.JSONObject;
 import org.openjdk.jmh.annotations.Benchmark;
@@ -24,6 +26,13 @@ public class Deserialization extends JsonBench {
     @Override
     public Object gson() throws Exception {
         return JSON_SOURCE().provider().gson().fromJson(JSON_SOURCE().nextReader(), JSON_SOURCE().pojoType());
+    }
+
+    @Benchmark
+    @Override
+    public Object gson_jsonobject() throws Exception {
+        return JSON_SOURCE().provider().gsonJsonObject().fromJson(JSON_SOURCE().nextReader(),
+            JsonObject.class);
     }
 
     @Benchmark

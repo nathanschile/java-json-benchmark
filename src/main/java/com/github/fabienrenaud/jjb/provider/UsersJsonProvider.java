@@ -32,6 +32,7 @@ import javax.json.bind.Jsonb;
 public class UsersJsonProvider implements JsonProvider<Users> {
 
     private final Gson gson = new Gson();
+    private final Gson gsonJsonObject = new Gson();
     private final ObjectMapper jackson = new ObjectMapper();
     private final ObjectMapper jacksonAfterburner = new ObjectMapper();
     private final ObjectMapper jacksonOrgJson = new ObjectMapper();
@@ -72,6 +73,11 @@ public class UsersJsonProvider implements JsonProvider<Users> {
     @Override
     public Gson gson() {
         return gson;
+    }
+
+    @Override
+    public Gson gsonJsonObject() {
+        return gsonJsonObject;
     }
 
     @Override

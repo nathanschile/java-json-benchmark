@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 public enum BenchSupport {
     USERS(
         new Libapi(Library.GSON, Api.DATABIND, Api.STREAM),
+        new Libapi(Library.GSON_JSONOBJECT, Api.DATABIND),
         new Libapi(Library.JACKSON, Api.DATABIND, Api.STREAM),
         new Libapi(Library.JACKSON_AFTERBURNER, Api.DATABIND),
         new Libapi(Library.JACKSON_ORGJSON, Api.DATABIND),
@@ -40,6 +41,7 @@ public enum BenchSupport {
     ),
     CLIENTS(
             new Libapi(Library.GSON, Api.DATABIND),
+            new Libapi(Library.GSON_JSONOBJECT, Api.DATABIND),
             new Libapi(Library.JACKSON, Api.DATABIND),
             new Libapi(Library.JACKSON_AFTERBURNER, Api.DATABIND),
             new Libapi(Library.JACKSON_ORGJSON, Api.DATABIND),

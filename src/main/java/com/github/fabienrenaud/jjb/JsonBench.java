@@ -15,6 +15,10 @@ public abstract class JsonBench {
         return null;
     }
 
+    public Object gson_jsonobject() throws Exception {
+        return null;
+    }
+
     public Object jackson() throws Exception {
         return null;
     }
