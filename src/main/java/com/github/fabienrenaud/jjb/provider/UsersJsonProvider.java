@@ -2,7 +2,6 @@ package com.github.fabienrenaud.jjb.provider;
 
 import com.cedarsoftware.util.io.JsonReader;
 import com.cedarsoftware.util.io.JsonWriter;
-import com.dslplatform.json.ConfigureJava8;
 import com.dslplatform.json.DslJson;
 import com.dslplatform.json.runtime.Settings;
 import com.fasterxml.jackson.core.JsonFactory;
@@ -54,6 +53,8 @@ public class UsersJsonProvider implements JsonProvider<Users> {
 
     private final Map<String, Object> jsonioStreamOptions = new HashMap<>();
 
+    private final javax.json.spi.JsonProvider provider = javax.json.spi.JsonProvider.provider();
+
     public UsersJsonProvider() {
         jacksonAfterburner.registerModule(new AfterburnerModule());
         jacksonOrgJson.registerModule(new JsonOrgModule());
@@ -78,6 +79,11 @@ public class UsersJsonProvider implements JsonProvider<Users> {
     @Override
     public Gson gsonJsonObject() {
         return gsonJsonObject;
+    }
+
+    @Override
+    public javax.json.spi.JsonProvider javaxjsonJsonObject() {
+        return provider;
     }
 
     @Override

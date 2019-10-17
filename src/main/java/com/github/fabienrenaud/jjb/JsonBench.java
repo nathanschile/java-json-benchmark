@@ -19,6 +19,10 @@ public abstract class JsonBench {
         return null;
     }
 
+    public Object javaxjson_jsonobject() throws Exception {
+        return null;
+    }
+
     public Object jackson() throws Exception {
         return null;
     }

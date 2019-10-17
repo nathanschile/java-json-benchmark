@@ -1,16 +1,17 @@
-./run deser --apis databind --libs jackson_orgjson,jackson,gson_jsonobject --size 1000
-```text
-Benchmark                             Mode  Cnt    Score    Error  Units
-Deserialization.gson_jsonobject      thrpt   20  533.205 ± 21.151  ops/s
-Deserialization.jackson              thrpt   20  911.469 ± 28.130  ops/s
-Deserialization.jackson_afterburner  thrpt   20  975.924 ± 23.809  ops/s
-Deserialization.jackson_orgjson      thrpt   20  757.947 ± 27.421  ops/s
+# JsonObject Performance
+
+./run deser --apis databind --libs jackson_orgjson,gson_jsonobject,javaxjson_jsonobject --size 1000
 ```
-./run deser --apis databind --libs jackson_orgjson,jackson,gson_jsonobject
+Benchmark                              Mode  Cnt    Score    Error  Units
+Deserialization.gson_jsonobject       thrpt   20  483.666 ± 15.192  ops/s
+Deserialization.jackson_orgjson       thrpt   20  732.920 ± 19.206  ops/s
+Deserialization.javaxjson_jsonobject  thrpt   20  444.785 ± 10.464  ops/s
 ```
-Benchmark                             Mode  Cnt       Score       Error  Units
-Deserialization.gson_jsonobject      thrpt   20  525167.403 ± 17376.934  ops/s
-Deserialization.jackson              thrpt   20  693303.446 ± 83344.498  ops/s
-Deserialization.jackson_afterburner  thrpt   20  803506.938 ± 43537.199  ops/s
-Deserialization.jackson_orgjson      thrpt   20  693364.776 ± 83671.510  ops/s
+
+./run deser --apis databind --libs jackson_orgjson,gson_jsonobject,javaxjson_jsonobject
+```
+Benchmark                              Mode  Cnt       Score       Error  Units
+Deserialization.gson_jsonobject       thrpt   20  499492.491 ± 16635.273  ops/s
+Deserialization.jackson_orgjson       thrpt   20  760920.621 ± 28405.341  ops/s
+Deserialization.javaxjson_jsonobject  thrpt   20  492379.245 ± 18934.384  ops/s
 ```

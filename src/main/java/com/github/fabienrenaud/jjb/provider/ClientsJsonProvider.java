@@ -59,6 +59,7 @@ public class ClientsJsonProvider implements JsonProvider<Clients> {
         .registerTypeAdapter(OffsetDateTime.class, (JsonDeserializer<OffsetDateTime>) (json, type, jsonDeserializationContext) -> OffsetDateTime.parse(json.getAsString()))
         .registerTypeAdapter(OffsetDateTime.class, (JsonSerializer<OffsetDateTime>) (value, typeOfSrc, context) -> new JsonPrimitive(value.toString()))
         .create();
+
     private final ObjectMapper jackson = new ObjectMapper()
             .registerModule(new JavaTimeModule())
             .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
@@ -159,6 +160,8 @@ public class ClientsJsonProvider implements JsonProvider<Clients> {
 
     private final Map<String, Object> jsonioStreamOptions = new HashMap<>();
 
+    private final javax.json.spi.JsonProvider provider = javax.json.spi.JsonProvider.provider();
+
     public ClientsJsonProvider() {
 
         jsonioStreamOptions.put(JsonReader.USE_MAPS, true);
@@ -187,6 +190,11 @@ public class ClientsJsonProvider implements JsonProvider<Clients> {
     @Override
     public Gson gsonJsonObject() {
         return gsonJsonObject;
+    }
+
+    @Override
+    public javax.json.spi.JsonProvider javaxjsonJsonObject() {
+        return provider;
     }
 
     @Override

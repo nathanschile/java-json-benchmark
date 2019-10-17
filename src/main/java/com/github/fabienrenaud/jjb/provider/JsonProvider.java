@@ -22,6 +22,8 @@ public interface JsonProvider<T> {
 
     Gson gsonJsonObject();
 
+    javax.json.spi.JsonProvider javaxjsonJsonObject();
+
     ObjectMapper jackson();
 
     ObjectMapper jacksonAfterburner();
